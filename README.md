@@ -18,7 +18,7 @@ In our phones, the battery is usually the first component to go. Since it's not 
 The argument I usually see against trying to protect the battery is convenience. Some people would rather "fully utilise" their phones every day, rather than babysiting them. After 2-5 years they will just buy a new phone, or a new replacement battery.
 
 However, this argument has serious flaws.
-- __Lithium and Cobalt (the ingredients of the battery) and many more precious elements are mined in irresponsible, dangerous and sometimes even illegal ways. The miners and workers are mostly treated unfairly with extremely low pay. This is how the phones and batteries can be at the current price. If the world was a better place, the price we'd pay for these would be much higher.__
+- __Lithium and Cobalt (the ingredients of the battery) and many more precious elements are mined in irresponsible, dangerous and sometimes even illegal ways. The miners and workers are mostly treated unfairly with extremely low pay. This is how the phones and batteries can be at the current price. If the world was a better place, the price we'd pay for these would be a lot higher. In our imperfect world, it will just be cheap now and much more expensive later, for both people and the environment. Taking shortcuts is like taking on debt, you'd pay for it later with interests.__
 - For most people most of the time, we only need to use about half of our battery capacity before we gain access to a plug. 
 - Nowadays, many phones (even iPhones) have a charge limit function built-in. You don't need to sit there and watch.
 
