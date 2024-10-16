@@ -26,6 +26,7 @@ This script is for the Android phones that still do not provide a charge limit f
 
 ## Prerequisites
 - Install `uhubctl`. Refer to the [github repo](https://github.com/mvp/uhubctl) for installation steps.
+- (macOS) Install `coreutils` with `brew install coreutils`.
 - Download the [Android platform tools](https://developer.android.com/tools/releases/platform-tools). Unzip it and add it to your path. For instance, if you have placed the contents of the zip file at the home folder, on Ubuntu you can add this to your ~/.profile
 ```
 export PATH=~/platform-tools:$PATH

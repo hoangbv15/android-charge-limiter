@@ -8,11 +8,14 @@ IS_CHARGING=1
 function setUsbPower {
 	IS_CHARGING=$1
 	# uhubctl -l 0-1.1.3 -a 0 -p 1
-	uhubctl -l $USB_HUB -a $1 -p $USB_PORT > /dev/null
+	timeout 5 uhubctl -l $USB_HUB -a $1 -p $USB_PORT #> /dev/null
 }
 
 function getBatteryLevel {
-	adb shell dumpsys battery get level
+	# The below is equivalent to
+	# adb shell dumpsys battery get level
+	# On some old phones, the adb server does not have the get command
+	adb shell dumpsys battery | grep level | tr -d -c 0-9
 }
 
 function backOff {
