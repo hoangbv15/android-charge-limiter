@@ -22,7 +22,7 @@ However, this argument has serious flaws.
 - For most people most of the time, we only need to use about half of our battery capacity before we gain access to a plug. 
 - Nowadays, many phones (even iPhones) have a charge limit function built-in. You don't need to sit there and watch.
 
-This script is for the Android phones that still do not provide a charge limit function, such as Pixel phones. Or if your favourite custom rom somehow lacks the feature, for instance, the stock OS of the Fairphone 5 has it but LineageOS does not.
+This script is for the Android phones that still do not provide a charge limit function, such as Pixel phones. Or if your favourite custom rom somehow lacks the feature, for instance, the stock OS of the Fairphone 5 has it but LineageOS for Fairphone 5 does not.
 
 ## Prerequisites
 - Install `uhubctl`. Refer to the [github repo](https://github.com/mvp/uhubctl) for installation steps.
