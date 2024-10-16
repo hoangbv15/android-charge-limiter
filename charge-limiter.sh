@@ -17,8 +17,10 @@ function getBatteryLevel {
 
 function backOff {
 	local pause=$1
-	pause=$(($pause * 3/2))
-	echo $pause
+	local step=$2
+	local stepOver=$(echo "3^$step" | bc)
+	local stepUnder=$(echo "2^$step" | bc)
+	echo $(($pause * $stepOver/$stepUnder))
 }
 
 function restorePower {
@@ -27,7 +29,7 @@ function restorePower {
 }
 trap restorePower EXIT
 
-chargePauseSeconds=20 # Default time to pause charging in seconds 
+chargePauseSeconds=30 # Default time to pause charging in seconds 
 restorePower
 sleep 5
 while :; 
@@ -46,15 +48,15 @@ while :;
 		# echo $msg
         # say $msg
 
-        if [[ $batterylevel -gt $CHARGE_STOP_LEVEL ]]; then
-        	echo "Charge is going over, we are pausing too little"
-        	chargePauseSeconds=$(backOff $chargePauseSeconds)
-        	echo "Increasing pause duration to $chargePauseSeconds seconds"
-        fi
-
-        echo "Turning off USB power for $chargePauseSeconds seconds..."
         setUsbPower 0
-        sleep $chargePauseSeconds
+		pause=$chargePauseSeconds
+		if [[ $batterylevel -gt $CHARGE_STOP_LEVEL ]]; then
+			amountOver=$(($batterylevel - $CHARGE_STOP_LEVEL))
+			echo "Charge is going over $amountOver %, increasing pause amount"
+        	pause=$(backOff $pause $amountOver)
+		fi
+        echo "Sleep for $pause seconds..."
+		sleep $pause
         echo "Turning USB power back on..."
         setUsbPower 1
 	else
