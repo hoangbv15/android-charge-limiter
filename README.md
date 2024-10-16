@@ -2,12 +2,15 @@
 
 This is a bash script that constantly monitors the battery level of any modern Android phone, and intermittently cuts USB power to the phone once the level reaches a configurable threshold.
 
-It does not require an app on the phone to operate. It however utilises https://github.com/mvp/uhubctl, which requires a USB hub capable of power switching. The list of verified working hubs is on the `uhubctl` repo. Some computers have built-in USB ports that support power switching, such as Raspberry Pis.
+It does not require an app on the phone to operate. It however utilises [uhubctl](https://github.com/mvp/uhubctl), which requires a USB hub capable of power switching. The list of verified working hubs is on the `uhubctl` repo. Some computers have built-in USB ports that support power switching, such as Raspberry Pis.
 
 For retrieving battery levels, it uses `adb` and requires USB Debugging to be enabled on the phone.
 
 ## Usage guide
-First, make sure `uhubctl` is installed on your computer. Refer to the github repo for installation steps. Also make sure USB debugging is enabled on the phone.
+First, make sure 
+- `uhubctl` is installed on your computer. Refer to the [github repo](https://github.com/mvp/uhubctl) for installation steps.
+- Download the [Android platform tools](https://developer.android.com/tools/releases/platform-tools) and make them available in your path.
+- Also make sure USB debugging is enabled on the phone.
 
 Plug a compatible USB hub to the computer, and plug the phone to the hub. Allow USB debugging for this computer if the popup appears on your phone.
 
