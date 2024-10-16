@@ -1,6 +1,6 @@
 # Android Charge Limiter
 
-This is a bash script that constantly monitors the battery level of any modern Android phone, and intermittently cuts USB power to the phone once the level reaches a configurable threshold.
+This is a bash script for Linux and macOS that constantly monitors the battery level of any modern Android phone, and intermittently cuts USB power to the phone once the level reaches a configurable threshold.
 
 It does not require an app on the phone to operate. It however utilises [uhubctl](https://github.com/mvp/uhubctl), which requires a USB hub capable of power switching. The list of verified working hubs is on the `uhubctl` repo. Some computers have built-in USB ports that support power switching, such as Raspberry Pis.
 
