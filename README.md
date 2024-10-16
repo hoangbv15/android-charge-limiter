@@ -8,6 +8,22 @@ It does not require an app on the phone to operate. It however utilises [uhubctl
 
 For retrieving battery levels, it uses `adb` and requires USB Debugging to be enabled on the phone.
 
+## Why limit charge?
+This question has been asked so many times, and unfortunately has gathered polarising opinions despite the clear evidence-backed science behind it.
+
+In short, lithium-ion batteries (the ones that power most of our portab;e electronics today) do not like it when it's either very full or very discharged. Letting the battery get to those states can significantly impact its chemical structure, thus reducing its capacity quickly.
+
+In our phones, the battery is usually the first component to go. Since it's not user-replaceable for most phones, we end up with expensive bricks after 2-5 years.
+
+The argument I usually see against trying to protect the battery is convenience. Some people would rather "fully utilise" their phones every day, rather than babysiting them. After 2-5 years they will just buy a new phone, or a new replacement battery.
+
+However, this argument has serious flaws.
+- __Lithium and Cobalt (the ingredients of the battery) and many more precious elements are mined in irresponsible, dangerous and sometimes even illegal ways. The miners and workers are mostly treated unfairly with extremely low pay. This is how the phones and batteries can be at the current price. If the world was a better place, the price we'd pay for these would be much higher.__
+- For most people most of the time, we only need to use about half of our battery capacity before we gain access to a plug. 
+- Nowadays, many phones (even iPhones) have a charge limit function built-in. You don't need to sit there and watch.
+
+This script is for the Android phones that still do not provide a charge limit function, such as Pixel phones. Or if your favourite custom rom somehow lacks the feature, for instance, the stock OS of the Fairphone 5 has it but LineageOS does not.
+
 ## Prerequisites
 - Install `uhubctl`. Refer to the [github repo](https://github.com/mvp/uhubctl) for installation steps.
 - Download the [Android platform tools](https://developer.android.com/tools/releases/platform-tools). Unzip it and add it to your path. For instance, if you have placed the contents of the zip file at the home folder, on Ubuntu you can add this to your ~/.profile
