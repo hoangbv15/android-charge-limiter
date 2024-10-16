@@ -18,7 +18,7 @@ Current status for hub 0-1.1.3 [0bda:5413 Dell Inc. Dell dock, USB 2.10, 6 ports
 ```
 Note the hub and port number (hub 0-1.1.3 and port 1).
 
-Open the script and edit the lines containing the `USB_HUB` and `USB_PORT` variables with the values found above.
+Download this script to your computer using whatever method you prefer, git clone  or copy paste. Open the script and edit the lines containing the `USB_HUB` and `USB_PORT` variables with the values found above.
 
 Allow the script to be executed
 ```
@@ -29,3 +29,8 @@ Finally, run the script with
 ```
 ./charge_limiter.sh
 ```
+
+## Troubleshoot
+- Q. Power is still sent to my phone even though the script says it's turning off USB power?
+
+  A. If you have a big and expensive hub such as a DELL thunderbolt dock, it could have bugs in its firmware that prevents `uhubctl` from controlling it properly. Usually a complete power cycle of the dock will solve the problem. If not, try manually setting the power status with the `uhubctl` command. If that still doesn't work, try another port. If it still does not work after all of that, then it's either an issue with `uhubctl` or the hub is not supported.

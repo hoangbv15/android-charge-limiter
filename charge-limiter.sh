@@ -7,6 +7,7 @@ IS_CHARGING=1
 # adb root
 function setUsbPower {
 	IS_CHARGING=$1
+	# uhubctl -l 0-1.1.3 -a 0 -p 1
 	uhubctl -l $USB_HUB -a $1 -p $USB_PORT > /dev/null
 }
 
@@ -16,8 +17,7 @@ function getBatteryLevel {
 
 function backOff {
 	local pause=$1
-	local step=$((3/2))
-	pause=$(($pause * $step))
+	pause=$(($pause * 3/2))
 	echo $pause
 }
 
@@ -32,7 +32,7 @@ restorePower
 sleep 5
 while :; 
   	do 
-  	# clear
+  	clear
   	
   	batterylevel=$(getBatteryLevel)
 
