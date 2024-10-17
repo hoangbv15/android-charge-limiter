@@ -1,6 +1,13 @@
-USB_HUB=0-1.1.3
+function readOrCreateConfig {
+	if ! [[ -f "$1" ]]; then
+		echo "$1 file does not exist, creating with default values"
+		echo 'USB_HUB=1-1
 USB_PORT=1
-CHARGE_STOP_LEVEL=80
+CHARGE_STOP_LEVEL=80' > $1
+	fi
+	source $1
+}
+readOrCreateConfig ~/chargelimiter.cfg
 
 IS_CHARGING=1
 
@@ -55,7 +62,7 @@ while :;
 		pause=$chargePauseSeconds
 		if [[ $batterylevel -gt $CHARGE_STOP_LEVEL ]]; then
 			amountOver=$(($batterylevel - $CHARGE_STOP_LEVEL))
-			echo "Charge is going over $amountOver %, increasing pause amount"
+			echo "Charge is going over $amountOver %, increasing pause duration"
         	pause=$(backOff $pause $amountOver)
 		fi
         echo "Sleep for $pause seconds..."
