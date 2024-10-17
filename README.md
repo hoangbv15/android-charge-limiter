@@ -45,19 +45,19 @@ Current status for hub 0-1.1.3 [0bda:5413 Dell Inc. Dell dock, USB 2.10, 6 ports
 ```
 Note the hub and port number (hub 0-1.1.3 and port 1).
 
-Download this script to your computer using whatever method you prefer, git clone  or copy paste. Open the script and edit the lines containing the `USB_HUB` and `USB_PORT` variables with the values found above.
-
-You can also change `CHARGE_STOP_LEVEL` from 80 to a value you prefer, such as 70 or 95.
-
-Allow the script to be executed
+Download this script to your computer using whatever method you prefer, git clone  or copy paste. Allow the script to be executed
 ```
 chmod +x charge_limiter.sh
 ```
-
-Finally, run the script with 
+Run the script with 
 ```
 ./charge_limiter.sh
 ```
+Upon the first run, the script will create a config file at `~/chargelimiter.cfg`. Open the config and edit the lines containing the `USB_HUB` and `USB_PORT` variables with the values found above.
+
+You can also change `CHARGE_STOP_LEVEL` from 80 to a value you prefer, such as 70 or 95.
+
+Finally, restart the script and voila.
 
 ## Troubleshoot
 #### My phone already supports charge limit, do I need this script?
