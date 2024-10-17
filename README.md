@@ -4,7 +4,7 @@ This is a bash script that constantly monitors the battery level of any modern A
 
 Supported OSes: Linux and macOS
 
-It does not require an app on the phone to operate. It however utilises [uhubctl](https://github.com/mvp/uhubctl), which requires a USB hub capable of power switching. The list of verified working hubs is on the `uhubctl` repo. Some computers have built-in USB ports that support power switching, such as Raspberry Pis.
+It does not require an app on the phone to operate. It however utilises [uhubctl](https://github.com/mvp/uhubctl), which requires a USB hub capable of power switching (meaning it can turn on/off the power to the ports programmatically). The list of verified working hubs is on the `uhubctl` repo. Some computers have built-in USB ports that support power switching, such as Raspberry Pis.
 
 For retrieving battery levels, it uses `adb` and requires USB Debugging to be enabled on the phone.
 
