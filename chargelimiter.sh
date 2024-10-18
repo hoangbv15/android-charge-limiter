@@ -16,7 +16,6 @@ fi
 
 IS_CHARGING=1
 
-# adb root
 function setUsbPower {
 	IS_CHARGING=$1
 	# uhubctl -l 0-1.1.3 -a 0 -p 1
@@ -34,21 +33,13 @@ function getBatteryLevel {
 	adb shell dumpsys battery | grep level | tr -d -c 0-9
 }
 
-function backOff {
-	local pause=$1
-	local step=$2
-	local stepOver=$(echo "3^$step" | bc)
-	local stepUnder=$(echo "2^$step" | bc)
-	echo $(($pause * $stepOver/$stepUnder))
-}
-
 function restorePower {
   echo "Restoring power to USB port..."
   setUsbPower 1
 }
 trap restorePower EXIT
 
-chargePauseSeconds=60 # Default time to pause charging in seconds 
+CHARGE_PAUSE_SECONDS=60 # Default time to pause charging in seconds 
 restorePower
 sleep 5
 while :; 
@@ -63,31 +54,25 @@ while :;
   	echo "Stop level: $CHARGE_STOP_LEVEL %"
 
 	if [[ $batterylevel -ge $CHARGE_STOP_LEVEL ]]; then
-		# msg="battery is at $batterylevel%"
-		# echo $msg
-        # say $msg
-
+		echo "Battery is greaater or equal than stop level, stop charging"
         setUsbPower 0
-		pause=$chargePauseSeconds
-		if [[ $batterylevel -gt $CHARGE_STOP_LEVEL ]]; then
-			amountOver=$(($batterylevel - $CHARGE_STOP_LEVEL))
-			echo "Charge is going over $amountOver %, increasing pause duration"
-        	pause=$(backOff $pause $amountOver)
-		fi
-        echo "Sleep for $pause seconds..."
-		sleep $pause
-        echo "Turning USB power back on..."
+        echo "Sleep for $CHARGE_PAUSE_SECONDS seconds..."
+		sleep $CHARGE_PAUSE_SECONDS
+        echo "Turning USB power back on briefly to check battery level..."
         setUsbPower 1
 	else
-		# If battery is below stop level, just keep charging
+		echo "Battery is below stop level, continue charging..."
 		if [[ $IS_CHARGING -eq 0 ]]; then
 			setUsbPower 1
 		fi
 	fi
 
-	if [[ $batterylevel -ge 75 ]]; then
+	if [[ $batterylevel -ge $(($CHARGE_STOP_LEVEL - 5)) ]]; then
+		# Wait some seconds for adb to connect to the device
 		sleep 5
 	else
+		# We are more than 5% lower than stop level, no need to 
+		# monitor closely
 		sleep 30
 	fi
 done
