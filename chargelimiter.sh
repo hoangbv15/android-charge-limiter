@@ -9,13 +9,22 @@ CHARGE_STOP_LEVEL=80' > $1
 }
 readOrCreateConfig ~/chargelimiter.cfg
 
+IS_VERBOSE=0
+if [[ $@ == *" -v"* ]]; then
+  IS_VERBOSE=1
+fi
+
 IS_CHARGING=1
 
 # adb root
 function setUsbPower {
 	IS_CHARGING=$1
 	# uhubctl -l 0-1.1.3 -a 0 -p 1
-	timeout 5 uhubctl -l $USB_HUB -a $1 -p $USB_PORT #> /dev/null
+	if [[ $IS_VERBOSE == 1 ]]; then
+		timeout 5 uhubctl -l $USB_HUB -a $1 -p $USB_PORT
+	else
+		timeout 5 uhubctl -l $USB_HUB -a $1 -p $USB_PORT > /dev/null
+	fi
 }
 
 function getBatteryLevel {
@@ -39,7 +48,7 @@ function restorePower {
 }
 trap restorePower EXIT
 
-chargePauseSeconds=30 # Default time to pause charging in seconds 
+chargePauseSeconds=60 # Default time to pause charging in seconds 
 restorePower
 sleep 5
 while :; 
